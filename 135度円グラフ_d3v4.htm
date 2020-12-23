@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Custom Pie Chart D3v4</title> 
+
+		<style>
+			body {
+			  background: #FFF;
+			  //font: 10px sans-serif;
+			  //margin: auto;
+			  //position: relative;
+			  width: 960px;
+			}
+
+			//text {
+			//	text-anchor: left;
+			//}
+
+			.graphTitleFrame {
+				background: blue;
+				width: 400px;
+				text-align: center;
+			}
+			
+			.graphTitleStyle {
+				color: #FFFFFF;
+				font-size: 18px;
+				font-family: 'メイリオ', sans-serif;
+				font-weight: bold;
+				text-anchor: middle;
+			}
+
+			#credit {
+			  //background: #7B9AD0;
+			  //position: absolute;
+				width: 400px;
+				height: 200px;
+				color: #ddd;
+				border: 1px solid;
+			}
+
+			.g4-chart-arc {
+				fill: white;
+				stroke: #AAAAAA;
+			}
+
+			.g4-chart-onText {
+				fill: #FFFFFF;
+				font-size: 14px;
+				font-family: 'メイリオ', sans-serif;
+				letter-spacing: 0.25em;
+			}
+
+			.g4-chart-onValue {
+				fill:#FFFFFF;
+				font-size: 12px;
+				font-family: 'メイリオ', sans-serif;
+			}
+		</style>
+
+		<script src="./d3-4.13.0/d3.js"></script>
+		<script type="text/javascript" src="./G4.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="./createImage.js" charset="UTF-8"></script>
+		<script type="text/javascript">
+			//グラフのデータ
+			var chartData = [
+				{index: 0.0,  value: 0.667, text: "予実精度"},
+				{index: 0.1,  value: 0.50, text: "当日目標"},
+				{index: 0.2,  value: 0.75, text: "当日実績"},
+			];
+
+			function onDraw() {
+				var chart = G4.generate({
+					bindto: "#chart",
+					size_width:200,
+					size_height:200,
+					chart_type: 'pieEx',
+					color_pattern: [
+									'#B80117', '#222584', '#00904A', '#EDC600', '#261E1C', 
+									'#6D1782', '#8F253B', '#A0C238', '#D16B16', '#0168B3', 
+									'#B88B26', '#C30068', 
+								],
+					data_array: chartData,
+					pie_background_img: "./imgs/coin_medal_gold.png",
+					pie_caption_show: false,
+					pie_value_show: true,
+				});
+
+				return true;
+			}
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="clickMe." onclick="onDraw();" />
+		<input type="button" value="グラフを描画してからクリックミー" onclick="createImage();" />
+		<div class="graphTitleFrame">
+			<p class="graphTitleStyle">廃棄量</p>
+		</div>
+		<div id="chart"></div>
+	</body>
+
+</html>
